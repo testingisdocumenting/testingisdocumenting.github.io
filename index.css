@@ -1,3 +1,40 @@
+:root {
+    --circlePlacementOffset: 0px;
+    --testingCardVerticalOffset: 10%;
+    --testingCardHorizontalOffset: 10%;
+    --documentingCardVerticalOffset: 10%;
+    --documentingCardHorizontalOffset: 10%;
+
+    --pointOffset: 20%;
+
+    --cardWidth: 30%;
+    --cardHeight: 30%;
+}
+
+@media only screen and (max-width: 650px) {
+    :root {
+        --testingCardVerticalOffset: 24px;
+        --testingCardHorizontalOffset: 24px;
+        --documentingCardVerticalOffset: 24px;
+        --documentingCardHorizontalOffset: 24px;
+        --cardWidth: 40%;
+        --cardHeight: 30%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    :root {
+        --cardWidth: 20%;
+        --cardHeight: 20%;
+
+        --circlePlacementOffset: -2px;
+    }
+}
+
 body {
     --text-color: #bbbbbb;
 
@@ -6,37 +43,8 @@ body {
     margin: 0;
     padding: 0;
 
-    background-color: #1e2529;
+    background-color: #66669b;
     color: var(--text-color);
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 22px;
-
-    background-color: #272f33;
-    height: 64px;
-
-    border-bottom: 1px solid #3e3e3e;
-}
-
-.header-testing {
-    color: #59a65a;
-    margin-right: 8px;
-}
-
-.header-is {
-    background-color: #bbbbbb;
-    color: #000;
-
-    padding: 8px 16px;
-    margin-right: 8px;
-}
-
-.header-documenting {
 }
 
 .landing {
@@ -45,49 +53,155 @@ body {
     max-width: 1250px;
     padding: 0 16px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
-.intro {
-    align-self: center;
-    max-width: 500px;
-    margin-top: 32px;
-    padding: 8px;
+.testing-triangle-image,
+.testing-triangle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    clip-path: polygon(0% 0%, 99% 0%, 0% 99%);
 }
 
-.products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    grid-gap: 16px;
-    margin-top: 24px;
+.testing-triangle {
+    background-image: linear-gradient(45deg, #000, #111);
 }
 
-.product {
-    background-color: #272f33;
+.testing-triangle-image {
+    background-image: url(webtau-terminal.png);
+
+    background-repeat: no-repeat;
+    background-size: 100vh;
+    opacity: 0.2;
+}
+
+.documenting-triangle-image,
+.documenting-triangle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    clip-path: polygon(100% 1%, 100% 100%, 1% 100%);
+}
+
+.documenting-triangle {
+    background-image: linear-gradient(45deg, #6f438d, #f1e7ee);
+}
+
+.documenting-triangle-image {
+    background-image: url(znai-doc.png);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.4;
+}
+
+
+.testing-point {
+    position: fixed;
+    bottom: calc(var(--pointOffset) + var(--circlePlacementOffset));
+    left: var(--pointOffset);
+
+    background: linear-gradient(45deg, #96c93d, #0b3f05);
+    border: 1px solid #0b3f05;
+}
+
+.documenting-point {
+    position: fixed;
+    top: calc(var(--pointOffset) + var(--circlePlacementOffset));
+    right: var(--pointOffset);
+
+    background: linear-gradient(45deg, #8E2DE2, #bbb7c4);
+    border: 1px solid #8E2DE2;
+}
+
+.diagonal-point {
     box-sizing: border-box;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 5px;
+}
+
+.card {
+    position: fixed;
+    border: 1px solid;
+    border-radius: 5px;
+
     padding: 16px;
-    border: 1px solid #3e3e3e;
+
+    color: #222;
 }
 
-.product-tile {
-    font-size: 24px;
-    color: #a4c4c4;
-
-    margin-bottom: 16px;
+.card h1 {
+    margin: 0;
 }
 
-.blog {
-}
-
-.no-style-link {
+.card a,
+.card a:visited {
+    color: var(--card-text-color);
     text-decoration: none;
-    color: var(--text-color);
 }
 
-b {
-    color: #f0ad4e;
+.testing-card {
+    --card-text-color: #111;
+
+    top: var(--testingCardVerticalOffset);
+    left: var(--testingCardHorizontalOffset);
+    width: var(--cardWidth);
+    height: var(--cardHeight);
+
+    border-color: #222;
+    background: linear-gradient(to left, #96c93d, #00b09b);
 }
 
-a, a:visited {
-    color: #5ca9e0;
-    text-decoration: none;
+.documenting-card {
+    --card-text-color: #ddd;
+
+    bottom: var(--documentingCardVerticalOffset);
+    right: var(--documentingCardHorizontalOffset);
+    width: var(--cardWidth);
+    height: var(--cardHeight);
+
+    border-color: #4A00E0;
+    background: linear-gradient(to right, #4A00E0, #8E2DE2);
+}
+
+.card-connection-testing {
+    position: fixed;
+    left: calc(var(--pointOffset) + 11px);
+    bottom: var(--pointOffset);
+    width: 2px;
+    height: calc(100% - var(--pointOffset) - var(--testingCardVerticalOffset) - 10px);
+
+    background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            #505b31 10px,
+            #7a671b 25px
+    )
+}
+
+.card-connection-documenting {
+    position: fixed;
+    right: calc(var(--pointOffset) + 11px);
+    top: var(--pointOffset);
+    width: 2px;
+    height: calc(100% - var(--pointOffset) - var(--testingCardVerticalOffset) - 10px);
+
+    background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            #4A00E0 10px,
+            #8E2DE2 25px
+    )
 }
