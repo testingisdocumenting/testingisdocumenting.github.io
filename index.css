@@ -5,7 +5,11 @@
     --documentingCardVerticalOffset: 10%;
     --documentingCardHorizontalOffset: 10%;
 
-    --pointOffset: 20%;
+    --testingVerticalPointOffset: 20%;
+    --testingHorizontalPointOffset: 20%;
+
+    --documentingVerticalPointOffset: 20%;
+    --documentingHorizontalPointOffset: 20%;
 
     --cardWidth: 30%;
     --cardHeight: 30%;
@@ -21,8 +25,11 @@
         --cardHeight: 30%;
     }
 
+    body {
+        font-size: 13px;
+    }
     h1 {
-        font-size: 24px;
+        font-size: 18px;
     }
 }
 
@@ -64,7 +71,7 @@ body {
     bottom: 0;
     right: 0;
 
-    clip-path: polygon(0% 0%, 99% 0%, 0% 99%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 15%, 0% 85%);
 }
 
 .testing-triangle {
@@ -87,7 +94,7 @@ body {
     bottom: 0;
     right: 0;
 
-    clip-path: polygon(100% 1%, 100% 100%, 1% 100%);
+    clip-path: polygon(100% 16%, 100% 100%, 0% 100%, 0% 86%);
 }
 
 .documenting-triangle {
@@ -105,8 +112,8 @@ body {
 
 .testing-point {
     position: fixed;
-    bottom: calc(var(--pointOffset) + var(--circlePlacementOffset));
-    left: var(--pointOffset);
+    bottom: calc(var(--testingVerticalPointOffset) + var(--circlePlacementOffset));
+    left: var(--testingHorizontalPointOffset);
 
     background: linear-gradient(45deg, #96c93d, #0b3f05);
     border: 1px solid #0b3f05;
@@ -114,8 +121,8 @@ body {
 
 .documenting-point {
     position: fixed;
-    top: calc(var(--pointOffset) + var(--circlePlacementOffset));
-    right: var(--pointOffset);
+    top: calc(var(--documentingVerticalPointOffset) + var(--circlePlacementOffset));
+    right: var(--documentingHorizontalPointOffset);
 
     background: linear-gradient(45deg, #8E2DE2, #bbb7c4);
     border: 1px solid #8E2DE2;
@@ -178,10 +185,10 @@ body {
 
 .card-connection-testing {
     position: fixed;
-    left: calc(var(--pointOffset) + 11px);
-    bottom: var(--pointOffset);
+    left: calc(var(--testingVerticalPointOffset) + 11px);
+    bottom: var(--testingVerticalPointOffset);
     width: 2px;
-    height: calc(100% - var(--pointOffset) - var(--testingCardVerticalOffset) - 10px);
+    height: calc(100% - var(--testingVerticalPointOffset) - var(--testingCardVerticalOffset) - 10px);
 
     background: repeating-linear-gradient(
             45deg,
@@ -194,10 +201,10 @@ body {
 
 .card-connection-documenting {
     position: fixed;
-    right: calc(var(--pointOffset) + 11px);
-    top: var(--pointOffset);
+    right: calc(var(--documentingHorizontalPointOffset) + 11px);
+    top: var(--documentingVerticalPointOffset);
     width: 2px;
-    height: calc(100% - var(--pointOffset) - var(--testingCardVerticalOffset) - 10px);
+    height: calc(100% - var(--testingVerticalPointOffset) - var(--testingCardVerticalOffset) - 10px);
 
     background: repeating-linear-gradient(
             45deg,
